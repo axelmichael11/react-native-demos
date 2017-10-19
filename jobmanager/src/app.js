@@ -7,6 +7,10 @@ import reducers from './reducers'
 import {APIKEY, AUTHDOMAIN, DATABASEURL, PROJECTID, STORAGEBUCKET, MESSAGINGSENDERID} from 'react-native-dotenv'
 import LoginForm from './components/loginform.js'
 import ReduxThunk from 'redux-thunk'
+
+import AppWithNavigationState from './appNavigationWithState.js'
+
+
 class App extends Component {
   componentWillMount(){
     var config = {
@@ -22,9 +26,7 @@ class App extends Component {
   render(){
     return (
       <Provider store={createStore(reducers, {}, applyMiddleware(ReduxThunk))}>
-        <View>
-          <LoginForm/>
-        </View>
+        <AppWithNavigationState/>
       </Provider>
     )
   }

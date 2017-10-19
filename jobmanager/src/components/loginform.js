@@ -2,10 +2,11 @@ import React, {Component} from 'react'
 import {Text} from 'react-native'
 import {Card, CardSection, Input, Button, Spinner} from './common'
 import {connect } from 'react-redux'
-import {emailChanged, passwordChanged, loginUser} from '../actions'
+import {emailChanged, passwordChanged, loginUser} from '../actions/authactions.js'
 
 
 class LoginForm extends Component {
+
   onEmailChange(text){
     this.props.emailChanged(text)
   }
@@ -67,11 +68,14 @@ const styles={
   }
 }
 
-const mapStateToProps =({auth}) => {
-  const {email, password, error, loading} = auth
+const mapStateToProps =({auth, nav}) => {
+  const {email, password, error, loading, isLoggedIn} = auth
 
-  return {email, password, error, loading}
-
+  return {email, password, error, loading, isLoggedIn}
 }
+
+const mapDispatchToProps = dispatch => ({
+  // loginScreen: ()=> dispatch(NavigationActions.navigate({routeName:'Login'}))
+})
 
 export default connect(mapStateToProps, {emailChanged, passwordChanged, loginUser})(LoginForm)
