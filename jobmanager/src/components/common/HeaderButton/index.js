@@ -1,32 +1,24 @@
-import React from 'react'
+import React, {Component} from 'react'
 import {Text, TouchableOpacity, Button} from 'react-native'
-import {createEmployee} from '../../../actions/navigationactions.js'
+import {addEmployee} from '../../../actions/navigationactions.js'
 import {connect } from 'react-redux'
 
-const HeaderButton = ({onPress, children}) => {
-  // const {buttonStyle, textStyle}= styles
-  action(){
-    if(children ==="Add Employee"){
-      return this.props.createEmployee()
-    } else {
-      return this.props.
-    }
+class AddButton extends Component {
+
+  buttonPress(){
+    this.props.addEmployee()
   }
-  return (
-    <Button onPress={onPress}>
+  render(){
+    return (
+      <Button title="Add Employee" onPress={this.buttonPress.bind(this)}>
       <Text>
-      {children}
+      Add Employee
       </Text>
-    </Button>
-  )
+      </Button>
+    )
+  }
 }
 
+const AddEmployeeButton = connect(null, {addEmployee})(AddButton)
 
-
-const mapDispatchToProps = dispatch => ({
-})
-
-export default connect(null, {createEmployee})(HeaderButton)
-
-
-export {HeaderButton}
+export {AddEmployeeButton}

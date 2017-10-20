@@ -16,21 +16,21 @@ const initialNavState = AppNavigator.router.getStateForAction(
 export default (state = initialNavState, action) => {
   let nextState;
   switch (action.type) {
-    case 'Login':
-      nextState = AppNavigator.router.getStateForAction(
-        NavigationActions.back(),
-        state
-      );
-      break;
-    case 'Logout':
-      nextState = AppNavigator.router.getStateForAction(
-        NavigationActions.navigate({ routeName: 'Login' }),
-        state
-      );
-      break;
-    case 'add_employee':
-      return {...state}
-      break;
+    // case 'Login':
+    //   nextState = AppNavigator.router.getStateForAction(
+    //     NavigationActions.back(),
+    //     state
+    //   );
+    //   break;
+    // case 'Logout':
+    //   nextState = AppNavigator.router.getStateForAction(
+    //     NavigationActions.navigate({ routeName: 'Login' }),
+    //     state
+    //   );
+    //   break;
+    // case 'add_employee':
+    //   return {...state}
+    //   break;
     default:
       nextState = AppNavigator.router.getStateForAction(action, state);
       break;

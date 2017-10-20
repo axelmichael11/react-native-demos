@@ -7,7 +7,7 @@ import LoginForm from './components/loginform';
 import EmployeeList from './components/employeelist';
 import EmployeeCreate from './components/employeecreate';
 import { NavigationActions } from 'react-navigation';
-import {HeaderButton} from './components/common'
+import {AddEmployeeButton} from './components/common'
 
 export const AppNavigator = StackNavigator({
   Login: {
@@ -19,9 +19,8 @@ export const AppNavigator = StackNavigator({
   Employees: {
     screen: EmployeeList,
     navigationOptions: {
-      title: "EmployeeList",
       headerLeft: null,
-      headerRight: <Button title='Add Employee' onPress={() => this.navigate('Create')} />,
+      headerRight: <AddEmployeeButton/>,
     }
    },
   Create: { screen: EmployeeCreate },
