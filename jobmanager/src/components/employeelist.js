@@ -1,7 +1,7 @@
 import React, {Component} from 'react'
 import {ListView} from 'react-native'
 import {connect} from 'react-redux'
-import ListItem from './ListItem'
+import ListItem from './ListItem/index.js'
 import {employeeFetch} from '../actions/employeeactions.js'
 import _ from 'lodash'
 class EmployeeList extends Component {
@@ -21,17 +21,17 @@ class EmployeeList extends Component {
       rowHasChanged: (r1, r2) => r1 !== r2
     })
 
-    this.dataSource = ds.cloneWithRows(this.props.employees)
+    this.dataSource = ds.cloneWithRows(employees)
   }
 
-  renderRow(employee){
-    return <ListItem employee={employee}/>
+  renderRow(employees){
+    return <ListItem employees={employees}/>
   }
 
   render() {
     return(
       <ListView
-      enableEmptySections
+      enableEmptySections={true}
       dataSource={this.dataSource}
       renderRow={this.renderRow}
       />

@@ -1,8 +1,8 @@
 import { NavigationActions } from 'react-navigation';
 
-export const addEmployee = (dispatch) => {
+export const addEmployee = (employee) => {
   return (dispatch) => {
     dispatch({type: 'add_employee'})
-    dispatch(NavigationActions.navigate({routeName: 'Create'}))
+    dispatch(NavigationActions.navigate({routeName: 'Create', params: {employee} }))
   }
 }

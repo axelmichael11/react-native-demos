@@ -28,9 +28,9 @@ export default (state = initialNavState, action) => {
     //     state
     //   );
     //   break;
-    // case 'add_employee':
-    //   return {...state}
-    //   break;
+    case 'add_employee':
+      return {...state}
+      break;
     default:
       nextState = AppNavigator.router.getStateForAction(action, state);
       break;

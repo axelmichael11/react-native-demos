@@ -5,7 +5,7 @@ import { connect } from 'react-redux';
 import { addNavigationHelpers, StackNavigator } from 'react-navigation';
 import LoginForm from './components/loginform';
 import EmployeeList from './components/employeelist';
-import EmployeeCreate from './components/employeecreate';
+import EmployeeCreate from './components/employeecreate.js';
 import { NavigationActions } from 'react-navigation';
 import {AddEmployeeButton} from './components/common'
 
