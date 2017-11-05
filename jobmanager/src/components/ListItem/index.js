@@ -1,21 +1,29 @@
 import React, {Component} from 'react'
 import {Text, TouchableWithoutFeedback, View} from 'react-native'
 import {CardSection} from '../common'
-import {addEmployee} from '../../actions/navigationactions.js'
+import {editEmployee} from '../../actions/navigationactions.js'
 import {connect} from 'react-redux'
+import EmployeeCreate from '../employeecreate.js'
 
 class ListItem extends Component{
 
 
 
-  onRowPress(name, phone, shift){
-    this.props.addEmployee({employee: this.props.employees})
-  }
+  onRowPress(){
+    const {name, phone, shift} = this.props.employees
+    // const {navigate} = this.props.navigation
+    navigate("Create", {},
+  {
+    type: "Navigate",
+    routeName: "Create",
+    params: {name:name, phone: phone, shift: shift}
+  })
+}
   render(){
     // const {navigate} = this.props.navigation
     const {name, phone, shift} = this.props.employees
 
-    console.log(this.props.employee);
+    console.log(this.props.employees);
 
     return(
       <TouchableWithoutFeedback onPress={this.onRowPress.bind(this)}
@@ -40,4 +48,4 @@ const styles = {
 }
 
 
-export default connect(null, {addEmployee})(ListItem)
+export default connect(null, {editEmployee})(ListItem)

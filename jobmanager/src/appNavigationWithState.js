@@ -23,7 +23,9 @@ export const AppNavigator = StackNavigator({
       headerRight: <AddEmployeeButton/>,
     }
    },
-  Create: { screen: EmployeeCreate },
+  Create: {
+    screen: EmployeeCreate,
+  }
 });
 
 export const AppWithNavigationState = ({ dispatch, nav }) => (
