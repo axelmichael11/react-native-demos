@@ -8,9 +8,10 @@ export const addEmployee = (dispatch) => {
 }
 
 
-export const editEmployee = (name, phone, shift) => {
+export const editEmployee = (employees) => {
   return (dispatch) => {
-    dispatch({type: 'add_employee'})
-    dispatch(NavigationActions.navigate({routeName: 'Create', params:{name, phone, shift}}))
+    dispatch({type: 'edit_employee'})
+    dispatch(NavigationActions.navigate({routeName:"Create", params:{employees}
+    }))
   }
 }

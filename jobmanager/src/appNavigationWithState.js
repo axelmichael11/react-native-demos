@@ -6,6 +6,7 @@ import { addNavigationHelpers, StackNavigator } from 'react-navigation';
 import LoginForm from './components/loginform';
 import EmployeeList from './components/employeelist';
 import EmployeeCreate from './components/employeecreate.js';
+import ListItem from './components/employeecreate.js';
 import { NavigationActions } from 'react-navigation';
 import {AddEmployeeButton} from './components/common'
 
@@ -18,13 +19,20 @@ export const AppNavigator = StackNavigator({
    },
   Employees: {
     screen: EmployeeList,
-    navigationOptions: {
-      headerLeft: null,
-      headerRight: <AddEmployeeButton/>,
-    }
+    navigationOptions: ({ navigation }) => ({
+    headerLeft: null,
+    headerRight: <AddEmployeeButton/>,
+    })
    },
   Create: {
     screen: EmployeeCreate,
+    navigationOptions: ({ navigation }) => ({
+      })
+  },
+  ListItem: {
+    screen: ListItem,
+    navigationOptions: ({ navigation }) => ({
+      })
   }
 });
 

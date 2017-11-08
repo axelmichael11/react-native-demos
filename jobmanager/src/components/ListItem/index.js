@@ -1,32 +1,34 @@
 import React, {Component} from 'react'
 import {Text, TouchableWithoutFeedback, View} from 'react-native'
 import {CardSection} from '../common'
-import {editEmployee} from '../../actions/navigationactions.js'
+import {editEmployee, addEmployee} from '../../actions/navigationactions.js'
+import {employeeFormFill} from '../../actions/employeeactions.js'
+
 import {connect} from 'react-redux'
 import EmployeeCreate from '../employeecreate.js'
 
 class ListItem extends Component{
+  constructor(props){
+    super(props)
+    this.state = {
+      employee: this.props.employees
+    }
+  }
 
 
+  onRowPress(employees){
+    this.props.editEmployee(employees)
+    this.props.employeeFormFill(employees)
+  }
 
-  onRowPress(){
-    const {name, phone, shift} = this.props.employees
-    // const {navigate} = this.props.navigation
-    navigate("Create", {},
-  {
-    type: "Navigate",
-    routeName: "Create",
-    params: {name:name, phone: phone, shift: shift}
-  })
-}
   render(){
-    // const {navigate} = this.props.navigation
+    const {employees} = this.props
     const {name, phone, shift} = this.props.employees
 
-    console.log(this.props.employees);
+    // console.log('this.props on listitem',this.props);
 
     return(
-      <TouchableWithoutFeedback onPress={this.onRowPress.bind(this)}
+      <TouchableWithoutFeedback onPress={()=>{this.onRowPress(employees)}}
       >
         <View>
           <CardSection>
@@ -48,4 +50,4 @@ const styles = {
 }
 
 
-export default connect(null, {editEmployee})(ListItem)
+export default connect(null, {editEmployee, employeeFormFill})(ListItem)

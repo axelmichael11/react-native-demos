@@ -24,6 +24,7 @@ class App extends Component {
   firebase.initializeApp(config);
   }
   render(){
+    // console.log('this.props on the app!', this.props);
     return (
       <Provider store={createStore(reducers, {}, applyMiddleware(ReduxThunk))}>
         <AppWithNavigationState/>

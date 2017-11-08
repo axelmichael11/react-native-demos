@@ -5,6 +5,7 @@ import {
   EMPLOYEE_UPDATE,
   EMPLOYEE_CREATE,
   EMPLOYEE_FETCH_SUCCESS,
+  EMPLOYEE_SAVE_SUCCESS,
 } from './types.js'
 
 
@@ -12,6 +13,20 @@ export const employeeUpdate = ({prop, value}) => {
   return {
     type:EMPLOYEE_UPDATE,
     payload: {prop, value}
+  }
+}
+
+export const employeeFormFill = (employees) => {
+  console.log('employees object on the action!!', employees);
+  return {
+    type: 'employee_form_fill',
+    payload: employees
+  }
+}
+
+export const employeeClearForm = () => {
+  return {
+    type: 'employee_clear_form',
   }
 }
 
@@ -39,15 +54,16 @@ export const employeeFetch = () => {
 }
 
 
-export const employeeSave = ({ name, phone, shift, uid }) => {
-  const { currentUser } = firebase.auth();
+export const employeeSave = (employeeInfo) => {
 
+  const { currentUser } = firebase.auth();
+  console.log('CURRENT USER INFO',currentUser, 'this is the employee INFFOOOOO',employeeInfo);
   return (dispatch) => {
-    firebase.database().ref(`/users/${currentUser.uid}/employees/${uid}`)
-      .set({ name, phone, shift })
+    firebase.database().ref(`/users/${currentUser.uid}/employees/${employeeInfo.uid}`)
+      .set({name: employeeInfo.name, phone:employeeInfo.phone, shift: employeeInfo.shift})
       .then(() => {
         dispatch({ type: EMPLOYEE_SAVE_SUCCESS });
-        Actions.employeeList({ type: 'reset' });
+        dispatch(NavigationActions.navigate({routeName: 'Employees'}))
       });
   };
 };

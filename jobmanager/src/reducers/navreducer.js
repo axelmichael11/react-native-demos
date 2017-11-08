@@ -16,19 +16,22 @@ const initialNavState = AppNavigator.router.getStateForAction(
 export default (state = initialNavState, action) => {
   let nextState;
   switch (action.type) {
-    // case 'Login':
-    //   nextState = AppNavigator.router.getStateForAction(
-    //     NavigationActions.back(),
-    //     state
-    //   );
-    //   break;
-    // case 'Logout':
-    //   nextState = AppNavigator.router.getStateForAction(
-    //     NavigationActions.navigate({ routeName: 'Login' }),
-    //     state
-    //   );
-    //   break;
+    case 'Login':
+      nextState = AppNavigator.router.getStateForAction(
+        NavigationActions.back(),
+        state
+      );
+      break;
+    case 'Logout':
+      nextState = AppNavigator.router.getStateForAction(
+        NavigationActions.navigate({ routeName: 'Login' }),
+        state
+      );
+      break;
     case 'add_employee':
+      return {...state}
+      break;
+    case 'edit_employee':
       return {...state}
       break;
     default:
@@ -37,5 +40,6 @@ export default (state = initialNavState, action) => {
   }
 
   // Simply return the original `state` if `nextState` is null or undefined.
+  console.log(nextState, state);
   return nextState || state;
 }

@@ -5,6 +5,10 @@ import ListItem from './ListItem/index.js'
 import {employeeFetch} from '../actions/employeeactions.js'
 import _ from 'lodash'
 class EmployeeList extends Component {
+  constructor(props){
+    super(props)
+    this.state = {}
+  }
 
   componentWillMount(){
     this.props.employeeFetch()
@@ -14,6 +18,7 @@ class EmployeeList extends Component {
 
   componentWillReceiveProps(nextProps){
     this.createDataSource(nextProps)
+    this.setState(nextProps)
   }
 
   createDataSource({employees}){
@@ -25,10 +30,13 @@ class EmployeeList extends Component {
   }
 
   renderRow(employees){
-    return <ListItem employees={employees}/>
+    return <ListItem
+    employees={employees}/>
   }
 
   render() {
+    // console.log('this.props on employee list', this.props);
+    // console.log('this.state',this.state);
     return(
       <ListView
       enableEmptySections={true}

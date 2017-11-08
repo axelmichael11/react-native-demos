@@ -6,6 +6,7 @@ import {connect } from 'react-redux'
 class AddButton extends Component {
 
   buttonPress(){
+    console.log('this.props on the button header',this.props);
     this.props.addEmployee()
   }
   render(){
