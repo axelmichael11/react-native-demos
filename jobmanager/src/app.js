@@ -11,6 +11,8 @@ import ReduxThunk from 'redux-thunk'
 import AppWithNavigationState from './appNavigationWithState.js'
 
 
+const store = createStore(reducers, applyMiddleware(ReduxThunk))
+
 class App extends Component {
   componentWillMount(){
     var config = {
@@ -26,7 +28,7 @@ class App extends Component {
   render(){
     // console.log('this.props on the app!', this.props);
     return (
-      <Provider store={createStore(reducers, {}, applyMiddleware(ReduxThunk))}>
+      <Provider store={store}>
         <AppWithNavigationState/>
       </Provider>
     )

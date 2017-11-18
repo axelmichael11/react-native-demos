@@ -16,11 +16,7 @@ class EmployeeForm extends Component {
 
   render() {
     console.log(this.state,'on the employeeForm!!!');
-    // if (this.props.navigation.state.params.employees === undefined){
-    //   let {name, phone, shift} = this.props
-    // } else {
-    //   let {name, phone, shift} = this.props.navigation.state.params.employees
-    // }
+
     return (
       <View>
         <CardSection>
@@ -41,10 +37,10 @@ class EmployeeForm extends Component {
           />
         </CardSection>
 
-        <CardSection style={{ flexDirection: 'column' }}>
+        <CardSection style={{ flexDirection: 'column', justifyContent:'center'}}>
           <Text style={styles.pickerTextStyle}>Shift</Text>
           <Picker
-            style={{ flex: 1 }}
+            style={{ flex: 1, }}
             selectedValue={this.props.shift}
             onValueChange={value => this.props.employeeUpdate({ prop: 'shift', value })}
           >
@@ -65,12 +61,12 @@ class EmployeeForm extends Component {
 const styles = {
   pickerTextStyle: {
     fontSize: 18,
-    paddingLeft: 20
+    paddingLeft: 20,
+    alignItems: 'center'
   }
 };
 
 const mapStateToProps = (state) => {
-  // console.log('this is the state fo the employeeForm', state.employeeForm);
   const { name, phone, shift } = state.employeeForm;
 
   return { name, phone, shift };

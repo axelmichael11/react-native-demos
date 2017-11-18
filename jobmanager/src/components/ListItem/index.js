@@ -1,5 +1,7 @@
 import React, {Component} from 'react'
-import {Text, TouchableWithoutFeedback, View} from 'react-native'
+import {Text, TouchableWithoutFeedback, Button, View} from 'react-native'
+import Swipeout from 'react-native-swipeout';
+
 import {CardSection} from '../common'
 import {editEmployee, addEmployee} from '../../actions/navigationactions.js'
 import {employeeFormFill} from '../../actions/employeeactions.js'
@@ -21,11 +23,23 @@ class ListItem extends Component{
     this.props.employeeFormFill(employees)
   }
 
+
+
+  rowDelete(employees){
+    // this.props.employeeDelete()
+  }
+
   render(){
+    // console.log('this.props ON LIST ITEM', this.props);
     const {employees} = this.props
     const {name, phone, shift} = this.props.employees
 
-    // console.log('this.props on listitem',this.props);
+    let swipeBtns = [{
+      text: 'Delete',
+      backgroundColor: 'red',
+      underlayColor: 'rgba(0, 0, 0, 1, 0.6)',
+      onPress: () => { this.deleteNote(employees) }
+    }];
 
     return(
       <TouchableWithoutFeedback onPress={()=>{this.onRowPress(employees)}}
@@ -38,6 +52,7 @@ class ListItem extends Component{
           </CardSection>
         </View>
       </TouchableWithoutFeedback>
+
     )
   }
 }

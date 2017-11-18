@@ -70,12 +70,12 @@ export const employeeSave = (employeeInfo) => {
 
 export const employeeDelete = ({ uid }) => {
   const { currentUser } = firebase.auth();
-
-  return () => {
+  console.log('this is the employeeDelete method with uid...', currentUser, uid);
+  return (dispatch) => {
     firebase.database().ref(`/users/${currentUser.uid}/employees/${uid}`)
       .remove()
       .then(() => {
-        Actions.employeeList({ type: 'reset' });
+        dispatch(NavigationActions.navigate({routeName: 'Employees'}))
       });
   };
 };
